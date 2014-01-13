@@ -52,19 +52,28 @@ ROOT_URLCONF = 'cxybkjx.urls'
 WSGI_APPLICATION = 'cxybkjx.wsgi.application'
 
 
+if 'SERVER_SOFTWARE' in os.environ :
+    from sae.const import MYSQL_DB, MYSQL_PORT, MYSQL_USER, MYSQL_PASS, MYSQL_HOST
+else :
+    MYSQL_HOST = 'localhost'
+    MYSQL_PORT = 3306
+    MYSQL_USER = 'nick'
+    MYSQL_PASS = '1'
+    MYSQL_DB = 'django'
+
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': MYSQL_DB,
-#        'USER': MYSQL_USER,
-#        'PASSWORD' : MYSQL_PASS,
-#        'HOST' : MYSQL_HOST_M,
-#        'PORT' : MYSQL_PORT,
-#    }
-#}
+DATABASES = {
+    'default': {
+       'ENGINE': 'django.db.backends.mysql',
+        'NAME': MYSQL_DB,
+        'USER': MYSQL_USER,
+        'PASSWORD' : MYSQL_PASS,
+        'HOST' : MYSQL_HOST,
+        'PORT' : MYSQL_PORT,
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
